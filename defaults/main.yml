@@ -1,2 +1,13 @@
 ---
 # defaults file for umd-bdii
+prerequisites:
+  redhat:
+    - glite-info-provider-ldap
+    - glite-info-provider-service
+    - glite-info-update-endpoints
+    - glite-info-plugin-delayed-delete-status
+  debian: []
+
+obsoletes:
+  redhat:
+    - glite-info-plugin-fcr

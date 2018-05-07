@@ -1,0 +1,7 @@
+---
+# Prerequisites for bdii (RedHat)
+- name: Install prerequisite packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ prerequisites[(ansible_os_family | lower)] }}"
