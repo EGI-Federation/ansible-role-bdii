@@ -1,5 +1,11 @@
 ---
 # Prerequisites for bdii (RedHat)
+- name: Obsolete packages must not be present
+  package:
+    name: "{{ item }}"
+    state: absent
+  with_items: "{{ obsoletes[(ansible_os_family | lower)}}"
+
 - name: Install prerequisite packages
   package:
     name: "{{ item }}"

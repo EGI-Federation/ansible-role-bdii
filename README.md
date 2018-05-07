@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/EGI-Foundation/ansible-umd-bdii-role.svg?branch=master)](https://travis-ci.org/EGI-Foundation/ansible-umd-bdii-role)
+
 # BDII
 
 <!-- A brief description of the role goes here. -->
@@ -6,11 +7,11 @@ This role is for deploying the Berkeley Database Information Index
 (BDII), specifically for providing a common information schema
 in distributed computing infrastructures.
 
-This role can deliver all levels of the BDII: 
+This role can deliver all levels of the BDII:
 
-  - top-bdii (combination of many site-bdiis)
-  - site-bdii (combination of many resource bdiis)
-  - resource-bdii (single resource information index)
+- top-bdii (combination of many site-bdiis)
+- site-bdii (combination of many resource bdiis)
+- resource-bdii (single resource information index)
 
 ## Requirements
 
@@ -33,10 +34,6 @@ vars are in the relevant file in `vars/` and  `defaults/` _etc_:
 - `vars/site.yml` - vars necessary to deliver _your_ site-bdii
 - `vars/resource.yml` - vars necessary to deliver  a site resource (e.g. compute endpoint)
 
-
-
-
-
 ## Dependencies
 
 <!--
@@ -55,7 +52,7 @@ passed in as parameters) is always nice for users too:
 ```yaml
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: EGI-Foundation.umd-bdii, level: top, umd_version: 4 }
 ```
 
 ## License

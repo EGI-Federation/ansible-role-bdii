@@ -11,3 +11,4 @@ prerequisites:
 obsoletes:
   redhat:
     - glite-info-plugin-fcr
+  debian: []
