@@ -4,7 +4,7 @@
   package:
     name: "{{ item }}"
     state: absent
-  with_items: "{{ obsoletes[(ansible_os_family | lower)}}"
+  with_items: "{{ obsoletes[(ansible_os_family | lower])}}"
 
 - name: Install prerequisite packages
   package:

@@ -6,7 +6,17 @@ prerequisites:
     - glite-info-provider-service
     - glite-info-update-endpoints
     - glite-info-plugin-delayed-delete-status
-  debian: []
+    - glue-schema
+    - openldap-servers
+    - openldap-clients
+  debian:
+    - glite-info-provider-ldap
+    - glite-info-provider-service
+    - glite-info-update-endpoints
+    - glite-info-plugin-delayed-delete-status
+    - glue-schema
+    - openldap-servers
+    - openldap-clients
 
 obsoletes:
   redhat:
