@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/EGI-Foundation/ansible-umd-bdii-role.svg?branch=master)](https://travis-ci.org/EGI-Foundation/ansible-umd-bdii-role)
 # BDII
 
 <!-- A brief description of the role goes here. -->
