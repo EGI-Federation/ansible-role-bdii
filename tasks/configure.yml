@@ -1,0 +1,21 @@
+---
+# Tasks to configure bdii
+- name: "Ensure the {{ bdii_user['groups'] }} present"
+  group:
+      name: "{{ item }}"
+      state: present
+      system: no
+  with_items: "{{ bdii_user['groups']}}"
+
+- name: Ensure users are present
+  user:
+      name: "{{ bdii_user['name'] }}"
+      create_home: no
+      uid: 1001
+      groups: "{{ bdii_user['groups'] }}"
+      group: "{{ bdii_user['group'] }}" # not required. Optionally sets the user's primary group (takes a group name).
+      home: "{{ bdii_user['home'] }}"
+      state: present
+      skeleton: false # not required. Optionally set a home skeleton directory. Requires create_home option!
+      shell: "{{ bdii_user['shell'] }}"
+      comment: "{{ bdii_user['comment']}}"

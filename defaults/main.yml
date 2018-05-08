@@ -22,3 +22,14 @@ obsoletes:
   redhat:
     - glite-info-plugin-fcr
   debian: []
+
+
+# The user that will run the process on on the bdii.
+bdii_user:
+  name: slapd
+  groups:
+    - slapd
+  group: slapd
+  home: "/var/lib/bdii"
+  shell: /usr/bin/nologin
+  comment: "BDII User Created by Ansible"
