@@ -6,9 +6,9 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
 
-# The process should be run by the openldap user
+# The process should be run by the slapd user
 def test_slapd_user(host):
-    user = host.user('openldap')
+    user = host.user('slapd')
 
     assert user.exists
     assert user.shell == '/usr/sbin/nologin'
@@ -48,7 +48,7 @@ def test_log_files(host):
 
     assert bdii_log_dir.exists
     assert bdii_log_dir.is_dir
-    assert bdii_log_dir.owner == 'openldap'
+    assert bdii_log_dir.owner == 'slapd'
 
     assert bdii_log_file.exists
     assert bdii_log_file.is_file
@@ -60,7 +60,7 @@ def test_data_files(host):
 
     assert data_dir.exists
     assert data_dir.is_directory
-    assert data_dir.user == 'openldap'
+    assert data_dir.user == 'slapd'
 
 
 def test_cron_jobs(host):

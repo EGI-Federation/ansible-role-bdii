@@ -31,5 +31,5 @@ bdii_user:
     - slapd
   group: slapd
   home: "/var/lib/bdii"
-  shell: /usr/bin/nologin
+  shell: /usr/sbin/nologin
   comment: "BDII User Created by Ansible"
