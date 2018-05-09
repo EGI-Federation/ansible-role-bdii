@@ -51,10 +51,14 @@ bdii:
   top:
     config_file: /etc/sysconfig/bdii
     delete_delay: 345600
-    slapd_conf_file: etc/bdii/bdii-top-slapd.conf
+    slapd_conf_file: /etc/bdii/bdii-top-slapd.conf
     ram_disk: yes
     ram_size: 2000M
     ipv6: yes
     update_endpoints_conf:
   site:
-  
+    config_file: /etc/bdii/bdii-slapd.conf
+    ram_disk: yes
+    ipv6: yes
+    static_info_config_file: /etc/glite-info-static/site/site.cfg
+    service_info_provider_config_file: /etc/bdii/gip/site-urls.conf

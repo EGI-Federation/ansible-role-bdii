@@ -1,6 +1,6 @@
 ---
 # Tasks to configure bdii
-- name: "Ensure the {{ bdii_user['groups'] }} present"
+- name: "Ensure the bdii user groups - {{ bdii_user['groups'] }}  present"
   group:
       name: "{{ item }}"
       state: present
@@ -12,13 +12,14 @@
       name: "{{ bdii_user['name'] }}"
       create_home: no
       uid: 1001
-      groups: "{{ bdii_user['groups'] }}"
+      groups: "{{ item }}"
       group: "{{ bdii_user['group'] }}"
       home: "{{ bdii_user['home'] }}"
       state: present
       skeleton: false
       shell: "{{ bdii_user['shell'] }}"
       comment: "{{ bdii_user['comment']}}"
+  with_items: "{{ bdii_user['groups'] }}"
 
 - name: Ensure data directory exists
   file:
@@ -26,4 +27,4 @@
       owner: "{{ bdii_user['name']}}"
       mode: 0644
       state: directory
-      group: "{{ bdii_user['groups']}}"
+      group: "{{ bdii_user['group']}}"
