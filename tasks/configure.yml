@@ -13,9 +13,17 @@
       create_home: no
       uid: 1001
       groups: "{{ bdii_user['groups'] }}"
-      group: "{{ bdii_user['group'] }}" # not required. Optionally sets the user's primary group (takes a group name).
+      group: "{{ bdii_user['group'] }}"
       home: "{{ bdii_user['home'] }}"
       state: present
-      skeleton: false # not required. Optionally set a home skeleton directory. Requires create_home option!
+      skeleton: false
       shell: "{{ bdii_user['shell'] }}"
       comment: "{{ bdii_user['comment']}}"
+
+- name: Ensure data directory exists
+  file:
+      path: "{{ bdii['core']['data_dir']}}"
+      owner: "{{ bdii_user['name']}}"
+      mode: 0644
+      state: directory
+      group: "{{ bdii_user['groups']}}"
