@@ -9,6 +9,7 @@ prerequisites:
     - glue-schema
     - openldap-servers
     - openldap-clients
+    - bdii
   debian:
     - glite-info-provider-ldap
     - glite-info-provider-service
@@ -17,6 +18,7 @@ prerequisites:
     - glue-schema
     - openldap-servers
     - openldap-clients
+    - bdii
 
 obsoletes:
   redhat:
@@ -26,19 +28,18 @@ obsoletes:
 
 # The user that will run the process on on the bdii.
 bdii_user:
-  name: slapd
+  name: ldap
   groups:
-    - slapd
-  group: slapd
+    - ldap
+  group: ldap
   home: "/var/lib/bdii"
   shell: /usr/sbin/nologin
   comment: "BDII User Created by Ansible"
 
-# Main configuration variable for BDII
-# this contains data that will drive the core aspects of the bdii
 bdii:
   core:
     data_dir: /var/lib/bdii
+    log_dir: /var/log/bdii
     log_file: /var/log/bdii/bdii-update.log
     pid_file: /var/run/bdii/bdii-update.pid
     log_level: ERROR
@@ -48,17 +49,3 @@ bdii:
     port: 2170
     breathe_time: 120
     archive_size: 2
-  top:
-    config_file: /etc/sysconfig/bdii
-    delete_delay: 345600
-    slapd_conf_file: /etc/bdii/bdii-top-slapd.conf
-    ram_disk: yes
-    ram_size: 2000M
-    ipv6: yes
-    update_endpoints_conf:
-  site:
-    config_file: /etc/bdii/bdii-slapd.conf
-    ram_disk: yes
-    ipv6: yes
-    static_info_config_file: /etc/glite-info-static/site/site.cfg
-    service_info_provider_config_file: /etc/bdii/gip/site-urls.conf

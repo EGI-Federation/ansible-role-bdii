@@ -1,14 +1,13 @@
 import os
-
+import pytest
 import testinfra.utils.ansible_runner
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
-
 # The process should be run by the slapd user
 def test_slapd_user(host):
-    user = host.user('slapd')
+    user = host.user('ldap')
 
     assert user.exists
     assert user.shell == '/usr/sbin/nologin'
@@ -32,27 +31,27 @@ def test_hosts_file(host):
 def test_config_files(host):
     bdii_update_script = host.file('/usr/sbin/bdii-update')
     bdii_conf = host.file('/etc/bdii/bdii.conf')
-
-    assert bdii_update_script.exists
-    assert bdii_update_script.is_file
-    assert bdii_update_script.mode == 777
+    bdii_sysconfig = host.file('/etc/sysconfig/bdii')
 
     assert bdii_conf.exists
     assert bdii_conf.is_file
-    # contains ?
+    assert bdii_conf.user == 'root'
 
+    assert bdii_sysconfig.exists
+    assert bdii_sysconfig.is_file
 
 def test_log_files(host):
     bdii_log_dir = host.file('/var/log/bdii')
     bdii_log_file = host.file('/var/log/bdii/bdii-update.log')
+    # bdii_sysconfig = host.file('/etc/sysconfig/bdii')
 
     assert bdii_log_dir.exists
-    assert bdii_log_dir.is_dir
-    assert bdii_log_dir.owner == 'slapd'
+    assert bdii_log_dir.is_directory
+    assert bdii_log_dir.user == 'ldap'
 
-    assert bdii_log_file.exists
-    assert bdii_log_file.is_file
-    assert bdii_log_file.owner
+    # assert bdii_log_file.exists
+    # assert bdii_log_file.is_file
+    # assert bdii_log_file.user == 'ldap'
 
 
 def test_data_files(host):
@@ -60,7 +59,7 @@ def test_data_files(host):
 
     assert data_dir.exists
     assert data_dir.is_directory
-    assert data_dir.user == 'slapd'
+    assert data_dir.user == 'ldap'
 
 
 def test_cron_jobs(host):

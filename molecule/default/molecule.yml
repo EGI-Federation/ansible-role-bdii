@@ -8,6 +8,8 @@ lint:
 platforms:
   - name: centos7
     image: centos:7
+  # - name: ubuntu
+  #   image: ubuntu:trusty
 provisioner:
   name: ansible
   lint:
