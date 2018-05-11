@@ -18,7 +18,7 @@ before_script:
       done
   - molecule lint
   - molecule destroy
- script:
+script:
   - molecule dependency
   - molecule syntax
   - molecule create
