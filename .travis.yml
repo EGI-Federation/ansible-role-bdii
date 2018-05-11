@@ -16,10 +16,21 @@ before_script:
       for file in `find . -maxdepth 2 -name "*.md"` ;  do
       markdownlint --ignore $md_ignore $file ;
       done
+  - molecule lint
+  - molecule destroy
 script:
-  - molecule test
+  - molecule dependency
+  - molecule syntax
+  - molecule create
+  - molecule prepare
+  - molecule converge
+  - molecule idempotence
+  - molecule side-effect
+  - molecule verify
 after_success:
+  - molecule destroy
 after_failure:
+  - molecule destroy
 before_deploy:
 deploy:
 after_deploy:

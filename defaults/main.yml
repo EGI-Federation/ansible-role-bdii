@@ -6,9 +6,46 @@ prerequisites:
     - glite-info-provider-service
     - glite-info-update-endpoints
     - glite-info-plugin-delayed-delete-status
-  debian: []
+    - glue-schema
+    - openldap-servers
+    - openldap-clients
+    - bdii
+  debian:
+    - glite-info-provider-ldap
+    - glite-info-provider-service
+    - glite-info-update-endpoints
+    - glite-info-plugin-delayed-delete-status
+    - glue-schema
+    - openldap-servers
+    - openldap-clients
+    - bdii
 
 obsoletes:
   redhat:
     - glite-info-plugin-fcr
   debian: []
+
+
+# The user that will run the process on on the bdii.
+bdii_user:
+  name: ldap
+  groups:
+    - ldap
+  group: ldap
+  home: "/var/lib/bdii"
+  shell: /usr/sbin/nologin
+  comment: "BDII User Created by Ansible"
+
+bdii:
+  core:
+    data_dir: /var/lib/bdii
+    log_dir: /var/log/bdii
+    log_file: /var/log/bdii/bdii-update.log
+    pid_file: /var/run/bdii/bdii-update.pid
+    log_level: ERROR
+    ldif_dir: /var/lib/bdii/gip/ldif
+    providers_dir: /var/lib/bdii/gip/provider
+    plugin_dir: /var/lib/bdii/gip/plugin
+    port: 2170
+    breathe_time: 120
+    archive_size: 2

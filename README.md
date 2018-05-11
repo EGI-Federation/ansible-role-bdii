@@ -15,24 +15,13 @@ This role can deliver all levels of the BDII:
 
 ## Requirements
 
-<!--
-Any pre-requisites that may not be covered by Ansible itself or the role should be
-mentioned here.
-For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
--->
 None
 
 ## Role Variables
 
-<!--
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
--->
-The main role variables are in `vars/main.ym`, while the bdii-level-specific
-vars are in the relevant file in `vars/` and  `defaults/` _etc_:
-
-- `vars/top.yml` - vars necessary to deliver _your_ top-bdii
-- `vars/site.yml` - vars necessary to deliver _your_ site-bdii
-- `vars/resource.yml` - vars necessary to deliver  a site resource (e.g. compute endpoint)
+The main role variables are in `defaults/main.yml`, while the bdii-specific
+vars are in `defaults/bdii.yml`.
+Overwrite these with your own vars in your group vars, or add your own to `vars/main.yml`
 
 ## Dependencies
 
@@ -41,6 +30,8 @@ A list of other roles hosted on Galaxy should go here, plus any details in regar
 
 Use https://galaxy.ansible.com/EGI-Foundation/ roles first if possible.
 -->
+
+See `meta.yml` for dependencies.
 
 ## Example Playbook
 
@@ -61,6 +52,7 @@ Apache-2.0
 
 ## Author Information
 
+[Bruce Becker](@brucellino), and others.
 <!--
 Add the relevant contributors
 -->

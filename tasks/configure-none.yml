@@ -1,0 +1,17 @@
+---
+# Tasks for no bdii type configuration
+# This is probably not a thing a sysadmin wants to do
+# but you may want just "bdii", so we don't configure any
+# info providers, just let Ops know that they may have made
+# a boo-boo
+
+- name: Tell Ops that they're probably doing something wrong
+  debug:
+    msg: |
+              BDII type 'none' was selected. This is probably due to the default being picked up.
+              If you are deploying to prod, this is probably not what you want.
+              We're going to pretend that you're smart, but maybe you wanted to set
+              bdii_type: site
+              or
+              bdii_type: top
+              ? Your call dude.

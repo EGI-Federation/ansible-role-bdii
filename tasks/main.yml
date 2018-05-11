@@ -1,3 +1,5 @@
 ---
 # tasks file for umd-bdii
-- include_tasks: "prerequisites_{{ ansible_os_family |lower }}.yml"
+- include_tasks: "prerequisites.yml"
+- include_tasks: "configure.yml"
+- include_tasks: "configure-{{ bdii_type | default('none')}}.yml"
