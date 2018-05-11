@@ -25,7 +25,7 @@ script:
   - molecule prepare
   - molecule converge
   - molecule idempotence
-  - molecule side_effect
+  - molecule side-effect
   - molecule verify
 after_success:
   - molecule destroy
