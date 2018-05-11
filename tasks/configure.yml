@@ -30,5 +30,5 @@
       state: directory
       group: "{{ bdii_user['group']}}"
   with_items:
-    - "{{ bdii['core']['data_dir']}}"
-    - "{{ bdii['core']['log_dir']}}"
+      - "{{ bdii['core']['data_dir']}}"
+      - "{{ bdii['core']['log_dir']}}"

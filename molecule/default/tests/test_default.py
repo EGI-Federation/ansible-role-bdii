@@ -1,9 +1,9 @@
 import os
-import pytest
 import testinfra.utils.ansible_runner
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
+
 
 # The process should be run by the slapd user
 def test_slapd_user(host):
@@ -29,7 +29,7 @@ def test_hosts_file(host):
 
 
 def test_config_files(host):
-    bdii_update_script = host.file('/usr/sbin/bdii-update')
+    # bdii_update_script = host.file('/usr/sbin/bdii-update')
     bdii_conf = host.file('/etc/bdii/bdii.conf')
     bdii_sysconfig = host.file('/etc/sysconfig/bdii')
 
@@ -40,10 +40,10 @@ def test_config_files(host):
     assert bdii_sysconfig.exists
     assert bdii_sysconfig.is_file
 
+
 def test_log_files(host):
     bdii_log_dir = host.file('/var/log/bdii')
-    bdii_log_file = host.file('/var/log/bdii/bdii-update.log')
-    # bdii_sysconfig = host.file('/etc/sysconfig/bdii')
+    # bdii_log_file = host.file('/var/log/bdii/bdii-update.log')
 
     assert bdii_log_dir.exists
     assert bdii_log_dir.is_directory
