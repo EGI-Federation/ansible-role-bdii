@@ -21,15 +21,7 @@ def test_hosts_file(host):
     assert f.group == 'root'
 
 
-# def test_slapd_process(host):
-#     slapd_process = host.process.filter(comm="slapd")
-#     assert slapd_process.running
-#     slapd_port = "tcp://0.0.0.0:2170"
-#     assert host.socket(slapd_port).is_listening
-
-
 def test_config_files(host):
-    # bdii_update_script = host.file('/usr/sbin/bdii-update')
     bdii_conf = host.file('/etc/bdii/bdii.conf')
     bdii_sysconfig = host.file('/etc/sysconfig/bdii')
 
@@ -43,15 +35,10 @@ def test_config_files(host):
 
 def test_log_files(host):
     bdii_log_dir = host.file('/var/log/bdii')
-    # bdii_log_file = host.file('/var/log/bdii/bdii-update.log')
 
     assert bdii_log_dir.exists
     assert bdii_log_dir.is_directory
     assert bdii_log_dir.user == 'ldap'
-
-    # assert bdii_log_file.exists
-    # assert bdii_log_file.is_file
-    # assert bdii_log_file.user == 'ldap'
 
 
 def test_data_files(host):
@@ -60,11 +47,3 @@ def test_data_files(host):
     assert data_dir.exists
     assert data_dir.is_directory
     assert data_dir.user == 'ldap'
-
-
-def test_cron_jobs(host):
-    # top-bdii update cron
-    assert True
-
-# def security(host):
-# database is world-readable but modifiable only by root
