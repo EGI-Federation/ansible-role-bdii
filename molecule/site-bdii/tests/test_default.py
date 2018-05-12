@@ -72,6 +72,7 @@ def test_data_files(host):
 # def test_processes(host):
 #     slapd_processes = host.process.filter(user="ldap", comm="slapd")
 
+
 def test_cron(host):
     update_endpoints = host.file('/etc/cron.hourly/glite-info-update-endpoints')
 

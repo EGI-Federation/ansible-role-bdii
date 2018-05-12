@@ -17,4 +17,3 @@ site:
   bdii_regions:
     - name: bdii
       url: "ldap://{{ ansible_fqdn }}:2170/mds-vo-name=resource,o=grid"
-
