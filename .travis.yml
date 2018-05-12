@@ -20,21 +20,21 @@ before_script:
       for file in `find . -maxdepth 2 -name "*.md"` ;  do
       markdownlint --ignore $md_ignore $file ;
       done
-  - molecule -s $SCENARIO lint 
-  - molecule -s $SCENARIO destroy
+  - molecule  lint -s $SCENARIO
+  - molecule  destroy -s $SCENARIO
 script:
-  - molecule -s $SCENARIO dependency
-  - molecule -s $SCENARIO syntax
-  - molecule -s $SCENARIO create
-  - molecule -s $SCENARIO prepare
-  - molecule -s $SCENARIO converge
-  - molecule -s $SCENARIO idempotence
-  - molecule -s $SCENARIO side-effect
-  - molecule -s $SCENARIO verify
+  - molecule  dependency -s $SCENARIO
+  - molecule  syntax -s $SCENARIO
+  - molecule  create -s $SCENARIO
+  - molecule  prepare -s $SCENARIO
+  - molecule  converge -s $SCENARIO
+  - molecule  idempotence -s $SCENARIO
+  - molecule  side-effect -s $SCENARIO
+  - molecule  verify -s $SCENARIO
 after_success:
-  - molecule -s $SCENARIO destroy
+  - molecule  destroy -s $SCENARIO
 after_failure:
-  - molecule -s $SCENARIO destroy
+  - molecule  destroy -s $SCENARIO
 before_deploy:
 deploy:
 after_deploy:

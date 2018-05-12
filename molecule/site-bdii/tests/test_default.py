@@ -27,6 +27,8 @@ def test_hosts_file(host):
 def test_config_files(host):
     bdii_conf = host.file('/etc/bdii/bdii.conf')
     bdii_sysconfig = host.file('/etc/sysconfig/bdii')
+    bdii_site_config_file = host.file('/etc/glite-info-static/site/site.cfg')
+    bdii_slapd_config_file = host.file('/etc/bdii-slapd.conf')
 
     assert bdii_conf.exists
     assert bdii_conf.is_file
@@ -34,8 +36,18 @@ def test_config_files(host):
 
     assert bdii_sysconfig.exists
     assert bdii_sysconfig.is_file
-
+    assert bdii_sysconfig.user == 'root'
     assert bdii_sysconfig.contains('^SLAPD_CONF = .*')
+    assert bdii_sysconfig.contains('SLAPD=/usr/sbin/slapd')
+
+    assert bdii_site_config_file.exists
+    assert bdii_site_config_file.is_file
+    assert bdii_site_config_file.user == 'root'
+
+    assert bdii_slapd_config_file.exists
+    assert bdii_slapd_config_file.is_file
+    assert bdii_slapd_config_file.user == 'ldap'
+    assert not bdii_slapd_config_file.contains('not_set')
 
 
 def test_log_files(host):

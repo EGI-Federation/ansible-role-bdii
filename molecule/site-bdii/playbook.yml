@@ -2,6 +2,7 @@
 - name: Converge
   hosts: all
   pre_tasks:
-    - include_vars: test-site.yml
+    - name: Include test site vars
+      include_vars: test-site.yml
   roles:
     - { role: ansible-umd-bdii-role, bdii_type: site }

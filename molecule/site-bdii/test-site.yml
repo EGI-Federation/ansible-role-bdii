@@ -14,3 +14,6 @@ site:
   security_email: devsec@egi.eu
   support_email: help@egi.eu
   otherinfo: "GRID=EGI"
+
+bdii_regions:
+  - bdii

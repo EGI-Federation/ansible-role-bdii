@@ -1,2 +1,25 @@
 ---
 # Tasks for site-bdii configuration
+- name: Include type-specific vars
+  include_vars:
+    file: defaults/bdii.yml
+
+- name: Ensure Static Info Directory
+  file:
+    path: "{{ item }}"
+    owner: "{{ bdii_user['name'] }} "
+    state: directory
+    group: "{{ bdii_user['group'] }}"
+  loop:
+    - /etc/glite-info-static/
+    - /etc/glite-info-static/site
+- name: Template configuration files
+  template:
+    dest: "/{{ item }}"
+    src: "{{ item }}.j2"
+    mode: 0644
+    owner: "{{ bdii_user['name'] }}"
+  loop:
+    - "{{ bdii['site']['slapd_config_file']}}"
+    - "{{ bdii['site']['static_info_config_file'] }}"
+    - "{{ bdii['site']['service_info_provider_config_file'] }}"

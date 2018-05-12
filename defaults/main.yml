@@ -34,7 +34,7 @@ bdii_user:
   groups:
     - ldap
   group: ldap
-  home: "/var/lib/bdii"
+  home: /var/lib/bdii
   shell: /usr/sbin/nologin
   comment: "BDII User Created by Ansible"
 
