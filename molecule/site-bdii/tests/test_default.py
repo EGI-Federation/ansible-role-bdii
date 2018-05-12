@@ -35,7 +35,7 @@ def test_config_files(host):
     assert bdii_sysconfig.exists
     assert bdii_sysconfig.is_file
 
-    assert bdii_sysconfig.contains('^SLAPD_CONF\ = .*')
+    assert bdii_sysconfig.contains('^SLAPD_CONF = .*')
 
 
 def test_log_files(host):

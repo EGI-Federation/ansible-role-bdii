@@ -1,0 +1,16 @@
+---
+# Vars for a test site
+# These variables should be checked against the site registered in GOCDB
+site:
+  name: test-site
+  description: Testing Site
+  web: http://test.egi.eu
+  distributed: no
+  location: Berlin
+  country: Germany
+  latitude: 52.5164
+  longitude: 13.4640
+  email: dev@egi.eu
+  security_email: devsec@egi.eu
+  support_email: help@egi.eu
+  otherinfo: "GRID=EGI"

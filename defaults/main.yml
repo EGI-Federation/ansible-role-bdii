@@ -10,6 +10,7 @@ prerequisites:
     - openldap-servers
     - openldap-clients
     - bdii
+    - pakiti-client
   debian:
     - glite-info-provider-ldap
     - glite-info-provider-service
@@ -19,6 +20,7 @@ prerequisites:
     - openldap-servers
     - openldap-clients
     - bdii
+    - pakiti-client
 
 obsoletes:
   redhat:
