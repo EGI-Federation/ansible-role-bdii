@@ -2,4 +2,4 @@
 - name: Converge
   hosts: all
   roles:
-    - role: ansible-umd-bdii-role
+    - { role: ansible-umd-bdii-role, bdii_type: site }

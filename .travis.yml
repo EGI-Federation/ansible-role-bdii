@@ -7,7 +7,9 @@ sudo: required
 services:
   - docker
 env:
-  md_ignore: R1  # Which markdownlint rules to ignore
+  - md_ignore=R1  # Which markdownlint rules to ignore
+  - SCENARIO=default
+  - SCENARIO=site-bdii
 before_install:
 install:
   - pip install -r requirements.txt  # The packages necessary for running the tests.
@@ -16,21 +18,21 @@ before_script:
       for file in `find . -maxdepth 2 -name "*.md"` ;  do
       markdownlint --ignore $md_ignore $file ;
       done
-  - molecule lint
-  - molecule destroy
+  - molecule -s $SCENARIO lint 
+  - molecule -s $SCENARIO destroy
 script:
-  - molecule dependency
-  - molecule syntax
-  - molecule create
-  - molecule prepare
-  - molecule converge
-  - molecule idempotence
-  - molecule side-effect
-  - molecule verify
+  - molecule -s $SCENARIO dependency
+  - molecule -s $SCENARIO syntax
+  - molecule -s $SCENARIO create
+  - molecule -s $SCENARIO prepare
+  - molecule -s $SCENARIO converge
+  - molecule -s $SCENARIO idempotence
+  - molecule -s $SCENARIO side-effect
+  - molecule -s $SCENARIO verify
 after_success:
-  - molecule destroy
+  - molecule -s $SCENARIO destroy
 after_failure:
-  - molecule destroy
+  - molecule -s $SCENARIO destroy
 before_deploy:
 deploy:
 after_deploy:
