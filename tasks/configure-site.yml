@@ -3,16 +3,21 @@
 - name: Include type-specific vars
   include_vars:
     file: defaults/bdii.yml
-
+    name: bdii_vars
+- name: debug
+  debug:
+    verbosity: 0 # not required. A number that controls when the debug is run, if you set to 3 it will only run debug when -vvv or above
+    var: bdii_vars
 - name: Ensure Static Info Directory
   file:
     path: "{{ item }}"
-    owner: "{{ bdii_user['name'] }} "
+    owner: "{{ bdii_user['name'] }}"
     state: directory
     group: "{{ bdii_user['group'] }}"
   loop:
     - /etc/glite-info-static/
     - /etc/glite-info-static/site
+    - /etc/bdii/gip/
 - name: Template configuration files
   template:
     dest: "/{{ item }}"
@@ -20,6 +25,6 @@
     mode: 0644
     owner: "{{ bdii_user['name'] }}"
   loop:
-    - "{{ bdii['site']['slapd_config_file']}}"
-    - "{{ bdii['site']['static_info_config_file'] }}"
-    - "{{ bdii['site']['service_info_provider_config_file'] }}"
+    - "{{ bdii_vars['site']['slapd_config_file']}}"
+    - "{{ bdii_vars['site']['static_info_config_file'] }}"
+    - "{{ bdii_vars['site']['service_info_provider_config_file'] }}"

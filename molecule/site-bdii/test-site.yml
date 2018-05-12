@@ -14,6 +14,7 @@ site:
   security_email: devsec@egi.eu
   support_email: help@egi.eu
   otherinfo: "GRID=EGI"
+  bdii_regions:
+    - name: bdii
+      url: "ldap://{{ ansible_fqdn }}:2170/mds-vo-name=resource,o=grid"
 
-bdii_regions:
-  - bdii

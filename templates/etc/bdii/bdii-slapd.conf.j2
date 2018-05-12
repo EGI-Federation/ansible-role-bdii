@@ -120,5 +120,5 @@ cachesize       10
 checkpoint      1024 0
 dbnosync
 rootdn          "o=infosys"
-rootpw          unuk0HW1d
+rootpw          {{ bdii['core']['password_root'] |default('not_set')}}
 directory       /var/lib/bdii/db/stats
