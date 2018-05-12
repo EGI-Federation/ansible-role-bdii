@@ -28,7 +28,7 @@ def test_config_files(host):
     bdii_conf = host.file('/etc/bdii/bdii.conf')
     bdii_sysconfig = host.file('/etc/sysconfig/bdii')
     bdii_site_config_file = host.file('/etc/glite-info-static/site/site.cfg')
-    bdii_slapd_config_file = host.file('/etc/bdii-slapd.conf')
+    bdii_slapd_config_file = host.file('/etc/bdii/bdii-slapd.conf')
 
     assert bdii_conf.exists
     assert bdii_conf.is_file
@@ -36,13 +36,13 @@ def test_config_files(host):
 
     assert bdii_sysconfig.exists
     assert bdii_sysconfig.is_file
-    assert bdii_sysconfig.user == 'root'
-    assert bdii_sysconfig.contains('^SLAPD_CONF = .*')
+    assert bdii_sysconfig.user == 'ldap'
+    assert bdii_sysconfig.contains('SLAPD_CONF')
     assert bdii_sysconfig.contains('SLAPD=/usr/sbin/slapd')
 
     assert bdii_site_config_file.exists
     assert bdii_site_config_file.is_file
-    assert bdii_site_config_file.user == 'root'
+    assert bdii_site_config_file.user == 'ldap'
 
     assert bdii_slapd_config_file.exists
     assert bdii_slapd_config_file.is_file
@@ -52,10 +52,14 @@ def test_config_files(host):
 
 def test_log_files(host):
     bdii_log_dir = host.file('/var/log/bdii')
+    info_update_log_file = host.file('/var/log/glite/glite-info-update-endpoints.log')
 
     assert bdii_log_dir.exists
     assert bdii_log_dir.is_directory
     assert bdii_log_dir.user == 'ldap'
+
+    assert info_update_log_file.exists
+    assert info_update_log_file.is_file
 
 
 def test_data_files(host):
@@ -64,3 +68,13 @@ def test_data_files(host):
     assert data_dir.exists
     assert data_dir.is_directory
     assert data_dir.user == 'ldap'
+
+# def test_processes(host):
+#     slapd_processes = host.process.filter(user="ldap", comm="slapd")
+
+def test_cron(host):
+    update_endpoints = host.file('/etc/cron.hourly/glite-info-update-endpoints')
+
+    assert update_endpoints.exists
+    assert update_endpoints.is_file
+    assert update_endpoints.contains('/usr/bin/glite-info-update-endpoints')

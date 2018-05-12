@@ -31,7 +31,7 @@ cachesize       30000
 checkpoint      1024 0
 dbnosync
 rootdn          "o=grid"
-rootpw          unuk0HW1d
+rootpw          {{ bdii_vars['site']['root_password'] |default('not_set') }}
 directory       /var/lib/bdii/db/grid
 
 index GlueCEAccessControlBaseRule eq
@@ -84,7 +84,7 @@ cachesize       30000
 checkpoint      1024 0
 dbnosync
 rootdn          "o=glue"
-rootpw          {{ bdii['core']['password_root'] |default('not_set')}}
+rootpw          {{ bdii_vars['site']['root_password'] |default('not_set')}}
 directory       /var/lib/bdii/db/glue
 
 index GLUE2GroupID eq
@@ -120,5 +120,5 @@ cachesize       10
 checkpoint      1024 0
 dbnosync
 rootdn          "o=infosys"
-rootpw          {{ bdii['core']['password_root'] |default('not_set')}}
+rootpw          {{ bdii_vars['site']['root_password'] |default('not_set')}}
 directory       /var/lib/bdii/db/stats

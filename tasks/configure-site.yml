@@ -18,6 +18,7 @@
     - /etc/glite-info-static/
     - /etc/glite-info-static/site
     - /etc/bdii/gip/
+
 - name: Template configuration files
   template:
     dest: "/{{ item }}"
@@ -28,3 +29,4 @@
     - "{{ bdii_vars['site']['slapd_config_file']}}"
     - "{{ bdii_vars['site']['static_info_config_file'] }}"
     - "{{ bdii_vars['site']['service_info_provider_config_file'] }}"
+    - "{{ bdii_vars['site']['config_file']}}"

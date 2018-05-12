@@ -10,6 +10,7 @@ top:
   ipv6: yes
   update_endpoints_conf:
 site:
+  config_file: etc/sysconfig/bdii
   slapd_config_file: etc/bdii/bdii-slapd.conf
   static_info_config_file: etc/glite-info-static/site/site.cfg
   service_info_provider_config_file: etc/bdii/gip/site-urls.conf
