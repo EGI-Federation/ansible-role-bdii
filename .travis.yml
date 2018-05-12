@@ -7,9 +7,11 @@ sudo: required
 services:
   - docker
 env:
-  - md_ignore=R1  # Which markdownlint rules to ignore
-  - SCENARIO=default
-  - SCENARIO=site-bdii
+  global:
+    - md_ignore=R1  # Which markdownlint rules to ignore
+  matrix:
+    - SCENARIO=default
+    - SCENARIO=site-bdii
 before_install:
 install:
   - pip install -r requirements.txt  # The packages necessary for running the tests.
