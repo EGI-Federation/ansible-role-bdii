@@ -6,7 +6,7 @@
     state: absent
   with_items: "{{ obsoletes[(ansible_os_family | lower)]}}"
 
-- name: Install prerequisite packages
+- name: Install core prerequisite packages
   package:
     name: "{{ item }}"
     state: present

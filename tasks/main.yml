@@ -1,5 +1,9 @@
 ---
 # tasks file for umd-bdii
+- name: "Include vars for the {{ bdii_type }}"
+  include_vars:
+    file: defaults/bdii.yml
+    name: bdii_vars
 - include_tasks: "prerequisites.yml"
 - include_tasks: "configure.yml"
 - include_tasks: "configure-{{ bdii_type | default('none')}}.yml"

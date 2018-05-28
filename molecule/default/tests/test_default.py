@@ -1,17 +1,11 @@
 import os
+
 import testinfra.utils.ansible_runner
+
+import pytest
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
-
-
-# The process should be run by the slapd user
-def test_slapd_user(host):
-    user = host.user('ldap')
-
-    assert user.exists
-    assert user.shell == '/usr/sbin/nologin'
-
 
 def test_hosts_file(host):
     f = host.file('/etc/hosts')
@@ -20,30 +14,24 @@ def test_hosts_file(host):
     assert f.user == 'root'
     assert f.group == 'root'
 
+@pytest.mark.parametrize('package_name', [
+    'bdii',
+    'glue-schema',
+    'glite-info-provider-service']
+)
 
-def test_config_files(host):
-    bdii_conf = host.file('/etc/bdii/bdii.conf')
-    bdii_sysconfig = host.file('/etc/sysconfig/bdii')
+def test_packages(host, package_name):
+    package = host.package(package_name)
+    
+    assert package.is_installed
 
-    assert bdii_conf.exists
-    assert bdii_conf.is_file
-    assert bdii_conf.user == 'root'
+@pytest.mark.parametrize('bdii_file_path', [
+    "/var/lib/bdii/gip/ldif",
+    "/var/lib/bdii/gip/provider",
+    "/var/lib/bdii/gip/plugin"]
+)
 
-    assert bdii_sysconfig.exists
-    assert bdii_sysconfig.is_file
+def test_required_paths(host, bdii_file_path):
+    file = host.file(bdii_file_path)
 
-
-def test_log_files(host):
-    bdii_log_dir = host.file('/var/log/bdii')
-
-    assert bdii_log_dir.exists
-    assert bdii_log_dir.is_directory
-    assert bdii_log_dir.user == 'ldap'
-
-
-def test_data_files(host):
-    data_dir = host.file('/var/lib/bdii')
-
-    assert data_dir.exists
-    assert data_dir.is_directory
-    assert data_dir.user == 'ldap'
+    assert file.exists

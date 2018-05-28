@@ -2,24 +2,22 @@
 # defaults file for umd-bdii
 prerequisites:
   redhat:
-    - glite-info-provider-ldap
-    - glite-info-provider-service
-    - glite-info-update-endpoints
-    - glite-info-plugin-delayed-delete-status
     - glue-schema
     - openldap-servers
     - openldap-clients
     - bdii
+    - glite-info-provider-service
+    - glue-validator
+#   - glue-validator-cron
     - pakiti-client
   debian:
-    - glite-info-provider-ldap
-    - glite-info-provider-service
-    - glite-info-update-endpoints
-    - glite-info-plugin-delayed-delete-status
     - glue-schema
     - openldap-servers
     - openldap-clients
     - bdii
+    - glite-info-provider-service
+    - glue-validator
+#    - glue-validator-cron
     - pakiti-client
 
 obsoletes:
@@ -40,7 +38,7 @@ bdii_user:
 
 bdii:
   core:
-    data_dir: /var/lib/bdii
+    data_dir: /var/run/bdii
     log_dir: /var/log/bdii
     log_file: /var/log/bdii/bdii-update.log
     pid_file: /var/run/bdii/bdii-update.pid

@@ -22,13 +22,13 @@
       comment: "{{ bdii_user['comment']}}"
   with_items: "{{ bdii_user['groups'] }}"
 
-- name: Ensure directories exists
-  file:
-      path: "{{ item }}"
-      owner: "{{ bdii_user['name']}}"
-      mode: 0644
-      state: directory
-      group: "{{ bdii_user['group']}}"
-  with_items:
-      - "{{ bdii['core']['data_dir']}}"
-      - "{{ bdii['core']['log_dir']}}"
+# - name: Ensure directories exists
+#   file:
+#       path: "{{ item }}"
+#       owner: "{{ bdii_user['name']}}"
+#       mode: 0644
+#       state: directory
+#       group: "{{ bdii_user['group']}}"
+#   with_items:
+#       - "{{ bdii['core']['data_dir']}}"
+#       - "{{ bdii['core']['log_dir']}}"

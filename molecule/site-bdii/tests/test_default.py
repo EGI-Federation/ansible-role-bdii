@@ -28,6 +28,7 @@ def test_config_files(host):
     bdii_conf = host.file('/etc/bdii/bdii.conf')
     bdii_sysconfig = host.file('/etc/sysconfig/bdii')
     bdii_site_config_file = host.file('/etc/glite-info-static/site/site.cfg')
+    bdii_site_urls_config = host.file('/etc/bdii/gip/site-urls.conf')
     bdii_slapd_config_file = host.file('/etc/bdii/bdii-slapd.conf')
 
     assert bdii_conf.exists
@@ -49,6 +50,15 @@ def test_config_files(host):
     assert bdii_slapd_config_file.user == 'ldap'
     assert not bdii_slapd_config_file.contains('not_set')
 
+    assert bdii_site_urls_config.exists
+    assert bdii_site_urls_config.is_file
+
+
+def test_providers(host):
+    provider_dir = host.file('/var/lib/bdii/gip/provider')
+
+    assert provider_dir.is_directory
+
 
 def test_log_files(host):
     bdii_log_dir = host.file('/var/log/bdii')
@@ -57,7 +67,6 @@ def test_log_files(host):
     assert bdii_log_dir.exists
     assert bdii_log_dir.is_directory
     assert bdii_log_dir.user == 'ldap'
-
     assert info_update_log_file.exists
     assert info_update_log_file.is_file
 
@@ -69,8 +78,10 @@ def test_data_files(host):
     assert data_dir.is_directory
     assert data_dir.user == 'ldap'
 
-# def test_processes(host):
-#     slapd_processes = host.process.filter(user="ldap", comm="slapd")
+
+def test_processes(host):
+    slapd_processes = host.process.filter(user="ldap", comm="slapd")
+    print slapd_processes
 
 
 def test_cron(host):

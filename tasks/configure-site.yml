@@ -1,13 +1,11 @@
 ---
 # Tasks for site-bdii configuration
-- name: Include type-specific vars
-  include_vars:
-    file: defaults/bdii.yml
-    name: bdii_vars
-- name: debug
-  debug:
-    verbosity: 0 # not required. A number that controls when the debug is run, if you set to 3 it will only run debug when -vvv or above
-    var: bdii_vars
+- name: Install site-bdii specific packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ bdii_vars[bdii_type]['packages'][(ansible_os_family |lower)]}}"
+
 - name: Ensure Static Info Directory
   file:
     path: "{{ item }}"
