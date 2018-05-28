@@ -1,5 +1,4 @@
 ---
-# Travis template for an EGI-styled role
 language: python
 python:
   - '2.7'
@@ -8,18 +7,16 @@ services:
   - docker
 env:
   global:
-    - md_ignore=R1  # Which markdownlint rules to ignore
+    - md_ignore=R1
   matrix:
     - SCENARIO=default
     - SCENARIO=site-bdii
 before_install:
 install:
-  - pip install -r requirements.txt  # The packages necessary for running the tests.
+  - pip install -r requirements.txt
 before_script:
-  - > # Lint all the markdown files
-      for file in `find . -maxdepth 2 -name "*.md"` ;  do
-      markdownlint --ignore $md_ignore $file ;
-      done
+  - 'for file in `find . -maxdepth 2 -name "*.md"` ;  do markdownlint --ignore $md_ignore
+  $file ; done'
   - molecule  lint -s $SCENARIO
   - molecule  destroy -s $SCENARIO
 script:
@@ -39,9 +36,7 @@ before_deploy:
 deploy:
 after_deploy:
 after_script:
-# Add your notifications here.
-# Use travis encrypt to add api tokens.
 notifications:
-  # slack:
-  # secure:
-  webhooks: "https://galaxy.ansible.com/api/v1/notifications/"
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  slack:
+    secure: OzT4ttHqfaxS6PkiUBTmxocjh2Yq0neHmwYS9LZQfZy0Wg3QJkaHJXwyOkHAOGzdpj2oVMDEuHXSqhPxb+2PNLrIRrlXFork9IAzRpR1XfGLNrOm4HGHerz145/HpMvpk6r7FTy19V28Kagel4FYoXo9/1eha0vnnTVtClq5+WN3NhEQ3AV/vzHOqwZTDMWapXN1pdTefYmL57n7pvCbLFuHw8bDln3e6P77CbLl9VUoDYBhj3A1TzaoKPJWJn9y64TUlQ0lo3HO4ZPQXCW86lGJWqazSQrCCCudv+FLS2Q/0jryli/ULXv30C3bu+iCoElaBh1gEpAHlvIy02EAZiuK5FlQe1tvNzJWA0qxlCUg7idh1IZoGZfRwjc4mvj4zlWYUVRGN5ZIeF6XOZOFm1Si8aWwGQfWG1EoecOh+K1HXNcZIeHqkioDJVoNcaNZxfO/CScKaONeyPBEuZVo0i4dgkGoWjF80I6pc3wAvVonRCNRZQAI6cbh01hlZSCFTvIv8CKNgYzRiBqgZlyOFo7QkHT2xZj0yHXL6FdoTUZKsHFATDWXA3x7+27cX3WQU2l/aIevw+5oyAZlXFz6BFK3tyuhzgTRP1xFE2xKRWQBoiyKwpb/yfhZRHfmHs7fAh+r6KhUGt2R0ffNF8giEhRnMX/gzDRnyL5lHGHVRvY=
