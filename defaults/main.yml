@@ -8,7 +8,7 @@ prerequisites:
     - bdii
     - glite-info-provider-service
     - glue-validator
-#   - glue-validator-cron
+    # - glue-validator-cron
     - pakiti-client
   debian:
     - glue-schema
@@ -17,7 +17,7 @@ prerequisites:
     - bdii
     - glite-info-provider-service
     - glue-validator
-#    - glue-validator-cron
+    # - glue-validator-cron
     - pakiti-client
 
 obsoletes:
