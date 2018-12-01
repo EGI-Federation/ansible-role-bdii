@@ -20,4 +20,3 @@ verifier:
   name: inspec
   lint:
     name: rubocop
-  

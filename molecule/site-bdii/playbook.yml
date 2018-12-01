@@ -5,4 +5,5 @@
     - name: Include test site vars
       include_vars: test-site.yml
   roles:
-    - { role: ansible-umd-bdii-role, bdii_type: site }
+    - { role: egi-foundation.umd, release: 4}
+    - { role: ansible-role-bdii, bdii_type: site }

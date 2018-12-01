@@ -5,7 +5,7 @@ site:
   name: test-site
   description: Testing Site
   web: http://test.egi.eu
-  distributed: no
+  distributed: false
   location: Berlin
   country: Germany
   latitude: 52.5164

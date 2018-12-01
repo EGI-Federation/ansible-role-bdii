@@ -8,6 +8,8 @@ lint:
 platforms:
   - name: centos7
     image: centos:7
+  - name: centos6
+    image: centos:6
 provisioner:
   name: ansible
   lint:
@@ -16,5 +18,7 @@ scenario:
   name: default
 verifier:
   name: testinfra
+  options:
+    n: 2
   lint:
     name: flake8
