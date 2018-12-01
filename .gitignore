@@ -2,3 +2,4 @@ __pycache__
 .molecule
 *.pyc
 .vscode
+pytest*.log
