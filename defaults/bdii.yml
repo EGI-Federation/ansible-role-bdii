@@ -13,11 +13,17 @@ top:
       - glite-info-update-endpoints
   config_file: /etc/sysconfig/bdii
   delete_delay: 345600
-  slapd_conf_file: /etc/bdii/bdii-top-slapd.conf
+  slapd_config_file: /etc/bdii/bdii-top-slapd.conf
   ram_disk: true
   ram_size: 2000M
   ipv6: true
   update_endpoints_conf:
+    enable_egi: True
+    status_filter: Certified
+    manual_config: False
+    manual_file: /tmp/endpoints.conf
+    output_file: /var/cache/glite/top-urls.conf
+    cache_dir: /var/cache/glite/glite-info-update-endpoints
 site:
   packages:
     redhat:

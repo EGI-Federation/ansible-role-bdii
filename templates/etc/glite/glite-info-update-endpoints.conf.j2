@@ -1,0 +1,17 @@
+[configuration]
+EGI  = {{ bdii_vars.top.update_endpoints_conf.enable_egi }}
+certification_status =  {{ bdii_vars.top.update_endpoints_conf.status_filter }}
+manual = {{ bdii_vars.top.update_endpoints_conf.manual_config }}
+{% if bdii_vars.top.update_endpoints_conf.manual_config %}
+manual_file = {{ bdii_vars.top.update_endpoints_conf.manual_file }}
+{% endif %}
+output_file = {{ bdii_vars.top.update_endpoints_conf.output_file }}
+cache_dir = {{ bdii_vars.top.update_endpoints_conf.cache_dir }}
+{% if ansible_facts['distribution_version'] is version('7', '>=') %}
+# Enable certificate verification on CentOS7 while downloading site
+# information data from GOCDB - it is necessary to trust
+# CAs issuing certs for https://goc.egi.eu
+cafile = /etc/pki/tls/cert.pem
+capath = /etc/pki/tls/certs
+capath = /etc/grid-security/certificates
+{% endif %}

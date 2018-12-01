@@ -1,2 +1,23 @@
 ---
 # Tasks for top-bdii configuration
+- name: Ensure top-bdii packages are present
+  package:
+      state: present
+      name: "{{ item }}"
+      use: auto
+  loop: "{{ bdii_vars[bdii_type]['packages'][ansible_os_family|lower] }}"
+
+- name: Template top-bdii endpoints configuration
+  template:
+    dest: /etc/glite/glite-info-update-endpoints.conf
+    src: etc/glite/glite-info-update-endpoints.conf.j2
+    owner: root
+    group: root
+
+- name: Template the top-bdii configuration file
+  template:
+    dest: /etc/sysconfig/bdii
+    src: etc/sysconfig/bdii.j2
+    owner: root
+    group: root
+    #validate: undefined
