@@ -1,0 +1,23 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+lint:
+  name: yamllint
+platforms:
+  - name: centos7
+    box: geerlingguy/centos7
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+scenario:
+  name: default-inspec
+verifier:
+  name: inspec
+  lint:
+    name: rubocop
+  
