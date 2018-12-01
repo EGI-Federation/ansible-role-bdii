@@ -18,5 +18,7 @@ scenario:
   name: top-bdii
 verifier:
   name: testinfra
+  options:
+    n: 2
   lint:
     name: flake8
