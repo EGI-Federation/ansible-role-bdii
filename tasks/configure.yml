@@ -32,3 +32,18 @@
   with_items:
     - "{{ bdii['core']['data_dir']}}"
     - "{{ bdii['core']['log_dir']}}"
+
+- name: Template BDII_CONFIG
+  template:
+    dest: /etc/bdii/DB_CONFIG
+    src: etc/bdii/DB_CONFIG.j2
+    owner: root
+    group: root
+
+- name: Template BDII_CONFIG for the bdii type
+  template:
+    dest: "/etc/bdii/DB_CONFIG_{{ bdii_type }}"
+    src: "etc/bdii/DB_CONFIG_{{ bdii_type }}.j2"
+    owner: root
+    group: root
+  when: bdii_type is defined
