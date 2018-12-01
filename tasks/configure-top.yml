@@ -2,9 +2,9 @@
 # Tasks for top-bdii configuration
 - name: Ensure top-bdii packages are present
   package:
-      state: present
-      name: "{{ item }}"
-      use: auto
+    state: present
+    name: "{{ item }}"
+    use: auto
   loop: "{{ bdii_vars[bdii_type]['packages'][ansible_os_family|lower] }}"
 
 - name: Template top-bdii endpoints configuration
@@ -20,4 +20,4 @@
     src: etc/sysconfig/bdii.j2
     owner: root
     group: root
-    #validate: undefined
+    # validate: undefined
