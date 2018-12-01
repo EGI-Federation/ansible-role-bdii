@@ -42,5 +42,6 @@ site:
   static_info_config_file: etc/glite-info-static/site/site.cfg
   service_info_provider_config_file: etc/bdii/gip/site-urls.conf
   ram_disk: false
+  ram_size: 2000M
   ipv6: true
   root_password: is_set
