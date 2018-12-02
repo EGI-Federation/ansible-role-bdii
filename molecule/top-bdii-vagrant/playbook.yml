@@ -2,4 +2,5 @@
 - name: Converge
   hosts: all
   roles:
-    - {role: ansible-role-bdii, bdii_type: top}
+    - { role: egi-foundation.umd, release: 4, become: true }
+    - { role: ansible-role-bdii, bdii_type: top, become: true}
