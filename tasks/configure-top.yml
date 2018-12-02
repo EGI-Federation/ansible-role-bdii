@@ -14,7 +14,7 @@
     owner: root
     group: root
 
-- name: Template the top-bdii configuration file
+- name: Template the top-bdii sysconfig file
   template:
     dest: /etc/sysconfig/bdii
     src: etc/sysconfig/bdii.j2
@@ -22,6 +22,12 @@
     group: root
     # validate: undefined
 
+- name: Template the bdii configuration file
+  template:
+    dest: /etc/bdii/bdii.conf
+    src: etc/bdii/bdii.conf.j2
+    owner: root
+    group: root
 # - name: Ensure db path is present
 #   file:
 #       path: "{{ item }}"
