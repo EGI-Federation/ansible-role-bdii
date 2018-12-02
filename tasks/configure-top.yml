@@ -21,3 +21,22 @@
     owner: root
     group: root
     # validate: undefined
+
+# - name: Ensure db path is present
+#   file:
+#       path: "{{ item }}"
+#       group: ldap
+#       state: directory
+#       owner: ldap
+#   loop:
+#     - /var/lib/bdii/db/stats
+#     - /var/lib/bdii/db/glue
+#     - /var/lib/bdii/db/grid
+#     - /var/lib/bdii/archive
+
+# - name: Create ramdisk
+#   mount:
+#     state: mounted
+#     path: /var/lib/bdii/db
+#     fstype: tmpfs
+#     opts: "size={{ bdii_vars.top.ram_size }}"

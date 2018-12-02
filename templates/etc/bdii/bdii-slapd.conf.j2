@@ -27,7 +27,8 @@ moduleload back_relay
 
 database        hdb
 suffix          "o=grid"
-cachesize       30000
+# apply optimisations
+{{ bdii_vars[bdii_type].cachesize }}
 checkpoint      1024 0
 dbnosync
 rootdn          "o=grid"

@@ -40,7 +40,7 @@
     owner: root
     group: root
 
-- name: Template BDII_CONFIG for the bdii type
+- name: Template DB_CONFIG for the bdii type
   template:
     dest: "/etc/bdii/DB_CONFIG_{{ bdii_type }}"
     src: "etc/bdii/DB_CONFIG_{{ bdii_type }}.j2"

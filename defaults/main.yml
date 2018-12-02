@@ -50,5 +50,5 @@ bdii:
     archive_size: 2
   db:
     dir: /var/lib/bdii/db
-    pid_file: /var/lib/bdii/
+    pid_file: /var/run/bdii/db/slapd.pid
     config_file: /etc/bdii/DB_CONFIG

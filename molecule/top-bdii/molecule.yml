@@ -8,6 +8,8 @@ lint:
 platforms:
   - name: centos7
     image: quay.io/egi/umd4:centos7
+    capabilities:
+      - SYS_ADMIN
   - name: centos6
     image: quay.io/egi/umd4:centos6
 provisioner:

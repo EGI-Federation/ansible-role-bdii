@@ -1,6 +1,7 @@
 import os
 # import requests
 # import xml.etree.ElementTree
+import pytest
 import testinfra.utils.ansible_runner
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
@@ -54,21 +55,31 @@ def test_config_files(host):
     assert bdii_site_urls_config.is_file
 
 
-def test_providers(host):
-    provider_dir = host.file('/var/lib/bdii/gip/provider')
+@pytest.mark.parmetrize("path", [
+    "/var/lib/bdii/gip/provider/glite-info-provider-service-bdii-site",
+    "/var/lib/bdii/gip/provider/glite-info-provider-site",
+    "/etc/bdii/gip/site-urls.conf",
+    "/var/lib/bdii/gip/provider/glite-info-provider-service-bdii-site-glue2",
+    "/var/lib/bdii/gip/provider/glite-info-provider-site-entry",
+    "/var/lib/bdii/gip/provider/glite-info-provider-site-entry-glue2",
+    "/var/lib/bdii/gip/provider/glite-info-provider-site-glue2",
+])
+def test_providers(host, path):
+    '''
+    Test that the GLUE and other providers are present
+    '''
 
+    provider_dir = host.file('/var/lib/bdii/gip/provider')
     assert provider_dir.is_directory
+    assert host.file(path).exists
+    assert host.file(path).is_file
 
 
 def test_log_files(host):
     bdii_log_dir = host.file('/var/log/bdii')
-    info_update_log_file = host.file('/var/log/glite/glite-info-update-endpoints.log')
-
     assert bdii_log_dir.exists
     assert bdii_log_dir.is_directory
     assert bdii_log_dir.user == 'ldap'
-    assert info_update_log_file.exists
-    assert info_update_log_file.is_file
 
 
 def test_data_files(host):

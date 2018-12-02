@@ -1,6 +1,6 @@
 [configuration]
-EGI  = {{ bdii_vars.top.update_endpoints_conf.enable_egi }}
-certification_status =  {{ bdii_vars.top.update_endpoints_conf.status_filter }}
+EGI = {{ bdii_vars.top.update_endpoints_conf.enable_egi }}
+certification_status = {{ bdii_vars.top.update_endpoints_conf.status_filter }}
 manual = {{ bdii_vars.top.update_endpoints_conf.manual_config }}
 {% if bdii_vars.top.update_endpoints_conf.manual_config %}
 manual_file = {{ bdii_vars.top.update_endpoints_conf.manual_file }}

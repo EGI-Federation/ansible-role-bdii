@@ -1,4 +1,10 @@
 ---
 # tasks for virtualbox deployment
+- name: Ensure bdii service is started
+  service:
+    name: bdii
+    enabled: true
+    state: started
+
 - debug:
     msg: "not implemented yet"

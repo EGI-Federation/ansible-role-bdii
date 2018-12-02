@@ -28,7 +28,5 @@
     - "{{ bdii_vars['site']['static_info_config_file'] }}"
     - "{{ bdii_vars['site']['service_info_provider_config_file'] }}"
     - "{{ bdii_vars['site']['config_file']}}"
-    #   @mkdir -p $(prefix)/var/lib/bdii/gip/provider/
-    # 	@mkdir -p $(prefix)/etc/bdii/gip/
-    # 	@install -m 0755 provider/glite-info-provider-* $(prefix)/var/lib/bdii/gip/provider/
+    # - "provider/glite-info-provider-* $(prefix)/var/lib/bdii/gip/provider/
     # 	@install -m 0644 etc/site-urls.conf $(prefix)/etc/bdii/gip/

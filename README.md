@@ -1,6 +1,7 @@
+# BDII
+
 [![Build Status](https://travis-ci.org/EGI-Foundation/ansible-umd-bdii-role.svg?branch=master)](https://travis-ci.org/EGI-Foundation/ansible-umd-bdii-role)
 
-# BDII
 
 <!-- A brief description of the role goes here. -->
 This role is for deploying the Berkeley Database Information Index
@@ -15,13 +16,14 @@ This role can deliver all levels of the BDII:
 
 ## Requirements
 
-None
+No explicit requirements.
 
 ## Role Variables
 
 The main role variables are in `defaults/main.yml`, while the bdii-specific
 vars are in `defaults/bdii.yml`.
 Overwrite these with your own vars in your group vars, or add your own to `vars/main.yml`
+
 
 ## Dependencies
 
@@ -31,7 +33,9 @@ A list of other roles hosted on Galaxy should go here, plus any details in regar
 Use https://galaxy.ansible.com/EGI-Foundation/ roles first if possible.
 -->
 
-See `meta.yml` for dependencies.
+This role depends on the [umd role](https://github.com/EGI-Foundation/ansible-role-umd) from EGI Foundation.
+This role ensures that the UMD base distribution is installed and the repositories configured.
+
 
 ## Example Playbook
 
@@ -43,8 +47,23 @@ passed in as parameters) is always nice for users too:
 ```yaml
     - hosts: servers
       roles:
-         - { role: EGI-Foundation.umd-bdii, level: top, umd_version: 4 }
+         - { role: egi-foundation.umd4, umd_version: 4 }
+         - { role: egi-foundation.bdii, level: top }
 ```
+
+## Testing
+
+Molecule is used to test the various scenarios.
+Test scenarios are found in the `molecule/` directory.
+Current test scenarios include:
+
+- top-bdii:
+  - Docker
+  - VirtualBox with Vagrant
+- site-bdii:
+  - Docker
+- default
+  - docker
 
 ## License
 

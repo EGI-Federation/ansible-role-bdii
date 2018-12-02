@@ -30,7 +30,8 @@ def test_packages(host, package_name):
 @pytest.mark.parametrize('bdii_file_path', [
     "/var/lib/bdii/gip/ldif",
     "/var/lib/bdii/gip/provider",
-    "/var/lib/bdii/gip/plugin"]
+    "/var/lib/bdii/gip/plugin",
+    "/var/run/bdii/db/"]
 )
 def test_required_paths(host, bdii_file_path):
     file = host.file(bdii_file_path)

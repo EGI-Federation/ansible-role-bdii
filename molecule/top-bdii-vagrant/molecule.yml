@@ -10,6 +10,8 @@ lint:
 platforms:
   - name: centos7
     box: geerlingguy/centos7
+  - name: centos6
+    box: geerlingguy/centos6
 provisioner:
   name: ansible
   lint:
