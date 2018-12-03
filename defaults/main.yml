@@ -50,7 +50,6 @@ bdii:
     archive_size: 2
     read_timeout: 300
     delete_delay: 43200
-    
   db:
     dir: /var/lib/bdii/db
     pid_file: /var/run/bdii/db/slapd.pid
