@@ -1,7 +1,6 @@
 # BDII
 
-[![Build Status](https://travis-ci.org/EGI-Foundation/ansible-umd-bdii-role.svg?branch=master)](https://travis-ci.org/EGI-Foundation/ansible-umd-bdii-role)
-
+[![Build Status](https://travis-ci.org/EGI-Foundation/ansible-role-bdii.svg?branch=master)](https://travis-ci.org/EGI-Foundation/ansible-role-bdii)
 
 <!-- A brief description of the role goes here. -->
 This role is for deploying the Berkeley Database Information Index
